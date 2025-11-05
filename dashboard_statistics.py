@@ -5,9 +5,19 @@ from dash import Dash, html, dcc, dash_table
 # ============================================================
 # 1️⃣ Load Excel file
 # ============================================================
-input_path = os.path.expanduser(
-    "~/Dropbox/python-finance-lecture/python-dash/scraping/results/StatisticsSummary.xlsx"
-)
+input_path = os.path.join(os.path.dirname(__file__), "StatisticsSummary.xlsx")
+
+# Safely handle missing file
+if not os.path.exists(input_path):
+    import dash
+    from dash import html
+    app = dash.Dash(__name__)
+    app.layout = html.Div([
+        html.H3("⚠️ Data file not found."),
+        html.P("Please upload or generate StatisticsSummary.xlsx in this directory.")
+    ])
+else:
+    df = pd.read_excel(input_path, sheet_name="statistics_summary")
 
 df = pd.read_excel(input_path, sheet_name="statistics_summary")
 
