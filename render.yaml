@@ -7,4 +7,4 @@ services:
     startCommand: python dashboard_statistics.py
     envVars:
       - key: PYTHON_VERSION
-        value: 3.13.1
+        value: 3.11.8
