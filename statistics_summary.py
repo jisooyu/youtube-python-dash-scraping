@@ -110,8 +110,7 @@ print(StatisticsSummary)
 print(f"✅ Finished {tag} ({len(StatisticsSummary)} rows total)")
 
 # Use os.path.expanduser
-output_path = os.path.expanduser("~/Dropbox/python-finance-lecture/python-dash/scraping/results/StatisticsSummary.xlsx")
-StatisticsSummary.to_excel(output_path, sheet_name='statistics_summary')
-
+output_path = os.path.join(os.path.dirname(__file__), "StatisticsSummary.xlsx")
+StatisticsSummary.to_excel(output_path, sheet_name="statistics_summary", index=False)
 # add a polite driver close
 driver.quit()
